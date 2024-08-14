@@ -1,0 +1,10 @@
+plugin.tx_getthingsdone {
+	settings {
+		taskCreateFormPageUid = {$plugin.tx_getthingsdone.settings.taskCreateFormPageUid}
+		itemsPerPage = {$plugin.tx_getthingsdone.settings.itemsPerPage}
+		maxNumberOfLinks = {$plugin.tx_getthingsdone.settings.maxNumberOfLinks}
+	}
+	persistence {
+		storagePid = {$plugin.tx_getthingsdone.persistence.storagePid}
+	}
+}

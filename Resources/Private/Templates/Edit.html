@@ -1,0 +1,63 @@
+<h1>Edit task "{task.title}"</h1>
+
+<f:flashMessages as="flashMessages">
+    <f:for each="{flashMessages}" as="flashMessage">
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-title">{flashMessage.title}</h4>
+            <p class="alert-message">{flashMessage.message}</p>
+        </div>
+    </f:for>
+</f:flashMessages>
+
+<f:form action="persistExistingTask" object="{task}" objectName="task">
+
+    <div class="mb-3">
+        <label for="new-task-title" class="form-label">Task title</label>
+        <f:form.textfield
+                id="new-task-title"
+                class="form-control"
+                property="title"
+                errorClass="error"
+                required="true"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="new-task-description" class="form-label">Task description</label>
+        <f:form.textarea
+                id="new-task-description"
+                class="form-control"
+                property="description"
+                rows="4"
+                errorClass="error"
+                required="true"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="new-task-dueDate" class="form-label">Due date</label>
+        <f:form.textfield
+                id="new-task-dueDate"
+                class="form-control"
+                property="dueDate"
+                errorClass="error"
+                type="datetime-local"
+                value="{task.dueDate -> f:format.date(format: 'Y-m-d\TH:i')}"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="new-task-sendReminderDate" class="form-label">Send reminder at</label>
+        <f:form.textfield
+                id="new-task-sendReminderDate"
+                class="form-control"
+                property="reminderDate"
+                errorClass="error"
+                type="datetime-local"
+                value="{task.reminderDate -> f:format.date(format: 'Y-m-d\TH:i')}"
+        />
+    </div>
+
+    <f:form.submit class="btn btn-primary" value="Update task" />
+
+</f:form>

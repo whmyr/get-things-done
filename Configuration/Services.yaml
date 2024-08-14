@@ -1,0 +1,19 @@
+services:
+  _defaults:
+    public: false
+    autowire: true
+    autoconfigure: true
+
+  Whmyr\Taskmanager\:
+    resource: '../Classes/*'
+    exclude: '../Classes/Domain/Model/*'
+
+  Whmyr\Taskmanager\EventListener\SimpleReminderMailSender:
+    tags:
+      - name: event.listener
+        identifier: 'taskmanagerSimpleReminderMailSender'
+
+  Whmyr\Taskmanager\EventListener\ResetReminderSentState:
+    tags:
+      - name: event.listener
+        identifier: 'taskmanagerResetReminderSentState'

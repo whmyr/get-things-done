@@ -1,0 +1,48 @@
+{
+  "name": "whmyr/get-things-done",
+  "description": "Task Management Extension with Bootstrap based default template",
+  "license": [
+    "GPL-3.0-or-later"
+  ],
+  "type": "typo3-cms-extension",
+  "version": "1.0",
+  "authors": [
+    {
+      "name": "Willi Wehmeier",
+      "email": "hi@whmyr.de"
+    }
+  ],
+  "require": {
+    "typo3/cms-backend": "^12.4",
+    "typo3/cms-extbase": "^12.4",
+    "typo3/cms-felogin": "^12.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Whmyr\\Taskmanager\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "get_things_done",
+      "app-dir": ".Build",
+      "web-dir": ".Build/Web"
+    }
+  },
+  "require-dev": {
+    "typo3/coding-standards": "^0.8.0",
+    "friendsofphp/php-cs-fixer": "^3.62"
+  },
+  "scripts": {
+    "cs": "php ./.Build/bin/php-cs-fixer fix  --dry-run -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./",
+    "csfix": "php ./.Build/bin/php-cs-fixer fix  -v --config ./Build/php-cs-fixer/php-cs-fixer.php ./"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
+  }
+}

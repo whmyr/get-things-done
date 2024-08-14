@@ -1,0 +1,13 @@
+plugin.tx_getthingsdone {
+	# cat=Get things done; label=Storage PID: Set the storage page uid where task records are located
+	persistence.storagePid =
+
+	settings {
+		# cat=Get things done; label=PID of the page where the task create form will be rendered
+		taskCreateFormPageUid =
+		# cat=Get things done; label=Items per page in the list view
+		itemsPerPage =
+		# cat=Get things done; label=Number of page links that will be displayed in the pagination
+		maxNumberOfLinks =
+	}
+}
