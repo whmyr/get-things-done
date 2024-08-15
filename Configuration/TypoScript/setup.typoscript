@@ -9,3 +9,20 @@ plugin.tx_getthingsdone {
 		storagePid = {$plugin.tx_getthingsdone.persistence.storagePid}
 	}
 }
+
+tx_getthingsdone_asyncpermissioncheck = PAGE
+tx_getthingsdone_asyncpermissioncheck {
+  typeNum = 1723708171
+
+  10 < tt_content.list.20.getthingsdone_asyncpermissioncheck
+
+  config {
+    disableAllHeaderCode = 1
+    admPanel = 0
+    debug = 0
+    disablePrefixComment = 1
+    metaCharset = utf-8
+    additionalHeaders.10.header = Content-Type:application/json
+    linkVars >
+  }
+}

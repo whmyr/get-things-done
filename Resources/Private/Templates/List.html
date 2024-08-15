@@ -12,6 +12,7 @@
 <f:if condition="{pagination.paginator.paginatedItems -> f:count()}">
     <f:then>
         <f:render section="Table" arguments="{_all}" />
+        <f:render section="HiddenAsyncForm" arguments="{taskIds: taskIds}" />
     </f:then>
     <f:else>
         <f:render section="NoItemsAvailable" />
@@ -19,7 +20,9 @@
 </f:if>
 
 <f:section name="Table">
-    <div class="table-responsive">
+    <div
+        class="table-responsive"
+    >
         <table class="table table-striped table-hover align-middle">
             <thead>
                 <tr>
@@ -37,7 +40,7 @@
             </thead>
             <tbody>
                 <f:for each="{pagination.paginator.paginatedItems}" as="item">
-                    <tr>
+                    <tr class="gtdjs-taskitem" data-uid="{item.uid}">
                         <td>{item.uid}</td>
                         <td>{item.title}</td>
                         <td>{item.description -> f:format.crop(maxCharacters: 20, append: '...')}</td>
@@ -69,24 +72,28 @@
                         </td>
                         <td>
                             <span class="controls">
-                                <f:if condition="{item.done}">
-                                    <f:then>
-                                        <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'markUndone', arguments: '{task: item}')}" role="button">
-                                            Mark as undone
-                                        </a>
-                                    </f:then>
-                                    <f:else>
-                                       <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'complete', arguments: '{task: item}')}" role="button">
-                                            Mark as done
-                                        </a>
-                                    </f:else>
-                                </f:if>
-                                <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'edit', arguments: '{task: item}')}" role="button">
-                                    Edit
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="{f:uri.action(action: 'delete', arguments: '{task: item}')}" role="button">
-                                    Remove
-                                </a>
+                                <span class="toggleState d-none">
+                                    <f:if condition="{item.done}">
+                                        <f:then>
+                                            <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'markUndone', arguments: '{task: item}')}" role="button">
+                                                Mark as undone
+                                            </a>
+                                        </f:then>
+                                        <f:else>
+                                           <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'complete', arguments: '{task: item}')}" role="button">
+                                                Mark as done
+                                            </a>
+                                        </f:else>
+                                    </f:if>
+                                </span>
+                                <span class="modify d-none">
+                                    <a class="btn btn-primary btn-sm" href="{f:uri.action(action: 'edit', arguments: '{task: item}')}" role="button">
+                                        Edit
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="{f:uri.action(action: 'delete', arguments: '{task: item}')}" role="button">
+                                        Remove
+                                    </a>
+                                </span>
                             </span>
                         </td>
                     </tr>
@@ -107,3 +114,11 @@
 <f:section name="NoItemsAvailable">
     <h2>No items here</h2>
 </f:section>
+
+<f:section name="HiddenAsyncForm">
+    <f:form actionUri="{f:uri.page(pageType: 1723708171)}" class="gtdjs-permissioncheck-form" pluginName="AsyncPermissionCheck">
+        <f:form.hidden name="taskList" value="{taskIds}" />
+    </f:form>
+</f:section>
+
+<f:asset.script identifier="getthingsdone" src="EXT:get_things_done/Resources/Public/JavaScript/taskmanager.js" />

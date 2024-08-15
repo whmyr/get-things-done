@@ -103,12 +103,18 @@ class TaskService implements SingletonInterface
         $this->eventDispatcher->dispatch(new TaskRemovedEvent($orignalTask));
     }
 
+    public function getTaskById(int $taskId): ?Task
+    {
+        return $this->taskRepository->findOneBy(['uid' => $taskId]);
+    }
+
+
     public function isAllowedToModifyTask(Task $task, int $userId, string $actionName = ''): bool
     {
         $assignee = $task->getAssignee();
         $owner = $task->getOwner();
 
-        if ($actionName !== 'completeTask') {
+        if ($actionName !== 'completeTask' && $actionName !== 'markAsUndone') {
             return $owner->getUid() === $userId;
         }
 

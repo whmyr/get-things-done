@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+use Whmyr\Taskmanager\Controller\AsyncTaskController;
 use Whmyr\Taskmanager\Controller\TaskController;
 
 defined('TYPO3') or die();
@@ -32,5 +33,16 @@ ExtensionUtility::configurePlugin(
     ],
     nonCacheableControllerActions: [
         TaskController::class => implode(',', $unCacheableControllerActions),
+    ],
+);
+
+ExtensionUtility::configurePlugin(
+    extensionName: 'GetThingsDone',
+    pluginName: 'AsyncPermissionCheck',
+    controllerActions: [
+        AsyncTaskController::class => 'getCurrentUserPermissionsForTaskList',
+    ],
+    nonCacheableControllerActions: [
+        AsyncTaskController::class => 'getCurrentUserPermissionsForTaskList',
     ],
 );

@@ -8,6 +8,9 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
+  Whmyr\Taskmanager\Controller\AsyncTaskController:
+    public: true
+
   Whmyr\Taskmanager\EventListener\SimpleReminderMailSender:
     tags:
       - name: event.listener

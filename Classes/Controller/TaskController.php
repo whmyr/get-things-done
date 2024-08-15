@@ -69,6 +69,10 @@ class TaskController extends ActionController
         $this->view->assign('pagination', $pagination);
         $this->view->assign('createFormUid', $taskCreateFormPageUid);
 
+        // Pass a comma separated list of the currently displayed task ids
+        // used for the async permission check in the AsyncTaskController
+        $this->view->assign('taskIds', $this->getTaskIdList($pagination));
+
         return $this->htmlResponse();
     }
 
@@ -235,5 +239,18 @@ class TaskController extends ActionController
                 DateTimeConverter::CONFIGURATION_DATE_FORMAT,
                 'Y-m-d\TH:i',
             );
+    }
+
+    public function getTaskIdList(SlidingWindowPagination $pagination): string
+    {
+        $items = $pagination->getPaginator()->getPaginatedItems();
+        $uids = [];
+
+        /** @var Task $item */
+        foreach ($items as $item) {
+            $uids[] = $item->getUid();
+        }
+
+        return implode(',', $uids);
     }
 }
