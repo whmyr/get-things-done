@@ -4,5 +4,6 @@ CREATE TABLE tx_getthingsdone_domain_model_task
     description text,
     done tinyint(4) UNSIGNED NOT NULL DEFAULT 0,
     owner int(11) UNSIGNED NOT NULL DEFAULT 0,
-    assigned_to int(11) UNSIGNED NOT NULL DEFAULT 0
+    assigned_to int(11) UNSIGNED NOT NULL DEFAULT 0,
+		task_category int(11) UNSIGNED NOT NULL DEFAULT 0,
 );

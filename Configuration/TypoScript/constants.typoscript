@@ -5,6 +5,8 @@ plugin.tx_getthingsdone {
 	settings {
 		# cat=Get things done; label=PID of the page where the task create form will be rendered
 		taskCreateFormPageUid =
+    # cat=Get things done; label=Storage PID of the page/folder containing the task categories
+    taskCategoriesStoragePid =
 		# cat=Get things done; label=Items per page in the list view
 		itemsPerPage =
 		# cat=Get things done; label=Number of page links that will be displayed in the pagination

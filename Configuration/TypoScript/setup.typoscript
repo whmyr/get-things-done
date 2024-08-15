@@ -1,6 +1,7 @@
 plugin.tx_getthingsdone {
 	settings {
 		taskCreateFormPageUid = {$plugin.tx_getthingsdone.settings.taskCreateFormPageUid}
+    taskCategoriesStoragePid = {$plugin.tx_getthingsdone.settings.taskCategoriesStoragePid}
 		itemsPerPage = {$plugin.tx_getthingsdone.settings.itemsPerPage}
 		maxNumberOfLinks = {$plugin.tx_getthingsdone.settings.maxNumberOfLinks}
 	}

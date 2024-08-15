@@ -26,6 +26,8 @@ class Task extends AbstractEntity
 
     protected ?User $assignee = null;
 
+    protected ?Category $category = null;
+
     protected \DateTime $createdAt;
 
     protected ?\DateTime $dueDate = null;
@@ -56,6 +58,17 @@ class Task extends AbstractEntity
         return $this;
     }
 
+    public function isDone(): bool
+    {
+        return $this->done;
+    }
+
+    public function setDone(bool $done): Task
+    {
+        $this->done = $done;
+        return $this;
+    }
+
     public function getOwner(): User
     {
         return $this->owner;
@@ -75,6 +88,17 @@ class Task extends AbstractEntity
     public function setAssignee(User $assignee): Task
     {
         $this->assignee = $assignee;
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): Task
+    {
+        $this->category = $category;
         return $this;
     }
 
@@ -113,17 +137,6 @@ class Task extends AbstractEntity
     public function setReminderMailSentAt(?\DateTime $reminderMailSentAt): Task
     {
         $this->reminderMailSentAt = $reminderMailSentAt;
-        return $this;
-    }
-
-    public function isDone(): bool
-    {
-        return $this->done;
-    }
-
-    public function setDone(bool $done): Task
-    {
-        $this->done = $done;
         return $this;
     }
 }

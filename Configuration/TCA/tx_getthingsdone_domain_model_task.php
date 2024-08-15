@@ -75,6 +75,20 @@ return [
                 ],
             ],
         ],
+        'task_category' => [
+            'label' => 'Task category',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'foreign_table' => 'sys_category',
+                'items' => [
+                    [
+                        'label' => 'Please choose',
+                        'value' => 0,
+                    ],
+                ],
+            ],
+        ],
         'crdate' => [
             'label' => 'Creation date',
             'config' => [
@@ -84,7 +98,7 @@ return [
     ],
     'types' => [
         '0' => [
-            'showitem' => 'title, description, done, due_date, reminder_date, owner, assigned_to',
+            'showitem' => 'title, description, done, task_category, owner, assigned_to, due_date, reminder_date',
         ],
     ],
 ];

@@ -35,6 +35,21 @@
     </div>
 
     <div class="mb-3">
+        <label for="new-task-category" class="form-label">Task category</label>
+        <f:form.select
+            id="new-task-category"
+            class="form-control"
+            property="category"
+            errorClass="error"
+            options="{categories}"
+            optionValueField="uid"
+            optionLabelField="title"
+            prependOptionLabel="Choose category"
+            prependOptionValue="0"
+        />
+    </div>
+
+    <div class="mb-3">
         <label for="new-task-dueDate" class="form-label">Due date</label>
         <f:form.textfield
                 id="new-task-dueDate"

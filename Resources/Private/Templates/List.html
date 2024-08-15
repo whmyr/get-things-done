@@ -25,9 +25,10 @@
                 <tr>
                     <th>#</th>
                     <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
                     <th>Author</th>
                     <th>Assigned to</th>
-                    <th>Description</th>
                     <th>State</th>
                     <th>Due date</th>
                     <th>Reminder date</th>
@@ -39,9 +40,15 @@
                     <tr>
                         <td>{item.uid}</td>
                         <td>{item.title}</td>
+                        <td>{item.description -> f:format.crop(maxCharacters: 20, append: '...')}</td>
+                        <td>
+                            <f:if condition="{item.category}">
+                                <f:then>{item.category.title}</f:then>
+                                <f:else>-</f:else>
+                            </f:if>
+                        </td>
                         <td>{item.owner.fullName}</td>
                         <td>{item.assignee.fullName}</td>
-                        <td>{item.description -> f:format.crop(maxCharacters: 20, append: '...')}</td>
                         <td>
                             <f:if condition="{item.done} == 1">
                                 <f:then><span class="badge bg-success">Done</span></f:then>

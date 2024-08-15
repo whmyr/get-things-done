@@ -16,6 +16,7 @@ use TYPO3\CMS\Extbase\Property\TypeConverter\DateTimeConverter;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use Whmyr\Taskmanager\Domain\Model\Task;
 use Whmyr\Taskmanager\Exception\NotAllowedToEditTaskException;
+use Whmyr\Taskmanager\Service\CategoryService;
 use Whmyr\Taskmanager\Service\TaskService;
 
 class TaskController extends ActionController
@@ -24,6 +25,7 @@ class TaskController extends ActionController
 
     public function __construct(
         private readonly TaskService $taskService,
+        private readonly CategoryService $categoryService,
         private readonly CacheManager $cacheManager,
         Context $context,
     ) {
@@ -79,6 +81,7 @@ class TaskController extends ActionController
         if ($task !== null) {
             $this->view->assign('task', $task);
         }
+        $this->view->assign('categories', $this->categoryService->getAllCategories());
 
         return $this->htmlResponse();
     }
@@ -110,6 +113,7 @@ class TaskController extends ActionController
         }
 
         $this->view->assign('task', $task);
+        $this->view->assign('categories', $this->categoryService->getAllCategories());
 
         return $this->htmlResponse();
     }
